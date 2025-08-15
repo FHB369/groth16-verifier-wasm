@@ -15,13 +15,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "ark-bn254"
+name = "ark-bls12-381"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a22f4561524cd949590d78d7d4c5df8f592430d221f7f3c9497bbafd8972120f"
+checksum = "c775f0d12169cba7aae4caeb547bb6a50781c7449a8aa53793827c9ec4abf488"
 dependencies = [
  "ark-ec",
  "ark-ff",
+ "ark-serialize",
  "ark-std",
 ]
 
@@ -581,7 +582,7 @@ checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
 name = "wasm-verifier"
 version = "0.1.0"
 dependencies = [
- "ark-bn254",
+ "ark-bls12-381",
  "ark-ec",
  "ark-ff",
  "ark-groth16",

@@ -1,4 +1,4 @@
-use ark_bn254::{Bn254, Fr};
+use ark_bls12_381::{Bls12_381, Fr};
 use ark_groth16::{ Groth16, prepare_verifying_key };
 use ark_relations::{
     lc,
@@ -30,13 +30,13 @@ fn main() {
     let mut rng = thread_rng();
 
     // Generate parameters
-    let params: ark_groth16::ProvingKey<Bn254> = {
+    let params: ark_groth16::ProvingKey<Bls12_381> = {
         let c = MyCircuit {
             a: Fr::rand(&mut rng),
             b: Fr::rand(&mut rng),
             c: Fr::rand(&mut rng),
         };
-        Groth16::<Bn254, ark_groth16::r1cs_to_qap::LibsnarkReduction>::generate_random_parameters_with_reduction(c, &mut rng).unwrap()
+        Groth16::<Bls12_381, ark_groth16::r1cs_to_qap::LibsnarkReduction>::generate_random_parameters_with_reduction(c, &mut rng).unwrap()
     };
 
     // Prepare the verification key
@@ -49,14 +49,14 @@ fn main() {
             b: Fr::from(2u32),
             c: Fr::from(2u32),
         };
-        Groth16::<Bn254, ark_groth16::r1cs_to_qap::LibsnarkReduction>::create_random_proof_with_reduction(c, &params, &mut rng).unwrap()
+        Groth16::<Bls12_381, ark_groth16::r1cs_to_qap::LibsnarkReduction>::create_random_proof_with_reduction(c, &params, &mut rng).unwrap()
     };
 
     let public_inputs = [Fr::from(1u32), Fr::from(2u32), Fr::from(2u32)];
 
     // Verify the proof
     let start = Instant::now();
-    let result = Groth16::<Bn254, ark_groth16::r1cs_to_qap::LibsnarkReduction>::verify_proof(&pvk, &proof, &public_inputs).unwrap();
+    let result = Groth16::<Bls12_381, ark_groth16::r1cs_to_qap::LibsnarkReduction>::verify_proof(&pvk, &proof, &public_inputs).unwrap();
     let duration = start.elapsed();
 
     assert!(result);
