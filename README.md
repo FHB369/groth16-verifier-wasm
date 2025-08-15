@@ -1,6 +1,6 @@
 # Groth16 Verifier (WASM)
 
-This project contains a simple Rust program that acts as a Groth16 verifier for a hardcoded proof, compiled to WebAssembly (WASM) for execution with the WebAssembly Micro Runtime (WAMR).
+This project contains a simple Rust program that acts as a Groth16 verifier (using BLS12-381) for a hardcoded proof, compiled to WebAssembly (WASM) for execution with the WebAssembly Micro Runtime (WAMR).
 
 ## How to Run
 
